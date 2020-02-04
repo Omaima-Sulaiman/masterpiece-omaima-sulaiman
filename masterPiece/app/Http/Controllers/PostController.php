@@ -63,6 +63,7 @@ class PostController extends Controller
         $post->type = $request->type;
         $post->user_id =  auth()->user()->id;
         $post->post_text = $request->post_text;
+        $post->city = $request->city;
 
         // Handle File Upload
         if ($request->hasFile('image')) {

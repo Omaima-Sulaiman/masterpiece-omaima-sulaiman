@@ -18,14 +18,12 @@ class ProfController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $posts = Post::where('user_id',$user_id)
-        ->get();
-        
-           
-            //   dd($user);
-            return view('users.index',compact('posts'));
-       
+        $posts = Post::where('user_id', $user_id)
+            ->get();
 
+
+        //   dd($user);
+        return view('users.index', compact('posts'));
     }
 
     /**
@@ -68,10 +66,10 @@ class ProfController extends Controller
      */
     public function edit($id)
     {
-        
-        $post=Post::findOrFail($id);
+
+        $post = Post::findOrFail($id);
         // dd($post);
-        return view('users.edit',compact('post'));
+        return view('users.edit', compact('post'));
     }
 
     /**
@@ -83,15 +81,31 @@ class ProfController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post =Post::findOrFail($id);
-        $post->update([
-            'title'=>$request->input('title'),
-            'post_text'=>$request->input('post_text'),
-            'image'=>$request->input('image'),
-            'city'=>$request->input('city'),
 
+        $post = Post::findOrFail($id);
+        if ($request->hasFile('image')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+        } else {
+            $image = $post->image;
+        }
+
+        $post->update([
+            'title' => $request->input('title'),
+            'post_text' => $request->input('post_text'),
+            'image' => $request->input('image'),
+            'city' => $request->input('city'),
+            'image' => $image
         ]);
-        // return $this->show($post);
+
         return redirect()->route('users.index');
     }
 

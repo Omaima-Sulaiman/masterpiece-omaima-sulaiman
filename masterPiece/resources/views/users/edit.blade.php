@@ -71,7 +71,7 @@
                                                 <label style="font-weight:bold;">Name Post</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                <input value="{{$post->title}}" type="text" name="type"
+                                                <input value="{{$post->title}}" type="text" name="title"
                                                        class="form-control" id="name" aria-describedby="emailHelp"
                                                        placeholder="Edit Name">
 
