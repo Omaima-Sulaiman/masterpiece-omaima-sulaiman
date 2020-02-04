@@ -28,6 +28,8 @@
                     <p>{!! nl2br($post->post_text) !!}</p>
 
                 </div>
+            <div><a class="nav-link" href="{{ route('posts.message', $post->id) }}">BORROW</a></div>
+                {{-- href="{{ route('massege') }}" --}}
             </div>
         </div>
         <form method="POST" action="{{route('comment.store') }}">

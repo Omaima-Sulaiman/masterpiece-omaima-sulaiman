@@ -99,7 +99,10 @@ class TaskController extends Controller
         $post =Post::findOrFail($id);
         $post->update([
             'title'=>$request->input('title'),
-            'title'=>$request->input('title')
+            'post_text'=>$request->input('post_text'),
+            'city'=>$request->input('city'),
+
+
         ]);
 //        dd($request);
         return redirect()->route('tasks.index');

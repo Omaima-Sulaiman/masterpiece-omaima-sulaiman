@@ -46,6 +46,7 @@
                     {{ $posts->links() }}
 
                 </div>
+                {{-- <a class="nav-link" href="{{ route('') }}">{{ __('Register') }}</a> --}}
             </div>
         </div>
         <div class="col-md-4">
