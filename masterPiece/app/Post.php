@@ -9,14 +9,16 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Post extends Model implements HasMedia
 {
+    // use SoftDeletes;
     use HasMediaTrait;
-    protected $fillable = ['user_id', 'title', 'post-text','image'];
+    protected $fillable = ['user_id', 'title', 'post_text', 'image', 'type', 'city'];
 
-    public function user(){
-        return $this->belongsTo('App\User');
-    }
+    // public function user(){
+    //     return $this->belongsTo('App\User');
+    // }
 
-    public function reservations(){
+    public function reservations()
+    {
         return $this->hasMany('App\Reservation');
     }
     public function categories()
@@ -26,6 +28,17 @@ class Post extends Model implements HasMedia
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
     public function registerMediaConversions(Media $media = null)
     {
@@ -39,13 +52,22 @@ class Post extends Model implements HasMedia
     }
     public function getCategoriesLinksAttribute()
     {
-        $categories = $this->categories()->get()->map(function($category) {
-            return '<a href="'.route('articles.index').'?category_id='.$category->id.'">'.$category->name.'</a>';
+        $categories = $this->categories()->get()->map(function ($category) {
+            return '<a href="' . route('posts.index') . '?category_id=' . $category->id . '">' . $category->name . '</a>';
         })->implode(' | ');
 
         if ($categories == '') return 'none';
 
         return $categories;
     }
+    public function getTagsLinksAttribute()
+    {
+        $tags = $this->tags()->get()->map(function ($tag) {
+            return '<a href="' . route('posts.index') . '?tag_id=' . $tag->id . '">' . $tag->name . '</a>';
+        })->implode(' | ');
 
+        if ($tags == '') return 'none';
+
+        return $tags;
+    }
 }

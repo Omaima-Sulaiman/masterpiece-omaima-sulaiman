@@ -25,8 +25,8 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'post-text' => 'required',
-            'image' =>'required'
+            'post_text' => 'required',
+            'image' => 'required'
         ];
     }
 }

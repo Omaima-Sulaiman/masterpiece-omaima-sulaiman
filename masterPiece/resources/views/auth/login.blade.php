@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,46 +69,13 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 
-<
+
 
             
 
-            <form action="#" class="p-5 bg-white">
-             
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label> 
-                  <input type="email" id="email" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label class="text-black" for="subject">Password</label> 
-                  <input type="password" id="subject" class="form-control">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-12">
-                  <p>No account yet? <a href="register.html">Register</a></p>
-                </div>
-              </div>
-
-            
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" value="Sign In" class="btn btn-primary py-2 px-4 text-white">
-                </div>
-              </div>
-
-  
-            </form>
-         
+           
 
 @endsection

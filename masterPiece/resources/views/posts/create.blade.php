@@ -27,7 +27,7 @@
                         <br />
 
                         Post text*:
-                        <textarea name="post-text" class="form-control" rows="10">{{ old('post-text') }}</textarea>
+                        <textarea name="post_text" class="form-control" rows="10">{{ old('post_text') }}</textarea>
                         <br />
 
                         Categories:
@@ -37,6 +37,22 @@
                             <br />
                         @endforeach
                         <br />
+                        Type:
+                        
+                        <input type="text" name="type" class="form-control" value="{{ old('type') }}" />
+
+                        <br />
+                         city:
+                        <input type="text" name="city" class="form-control" value="{{ old('city') }}" />
+                        <!-- <div class="dropdown">
+                            <input class="btn btn-primary dropdown-toggle" type="button" name="type" data-toggle="dropdown"/>
+                            <span class="caret"></span></input>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">free</a></li>
+                                <li><a href="#">rentr</a></li>
+                                
+                            </ul>
+                        </div> -->
 
                         <!-- Tags (comma-separated):
                         <input type="text" name="tags" class="form-control" />

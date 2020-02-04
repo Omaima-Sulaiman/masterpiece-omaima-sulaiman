@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\UserPost;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
-class UserPostController extends Controller
+use App\Comment;
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,27 +34,41 @@ class UserPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id=Auth::id();
+
+        if($user_id) {
+
+            Comment::create([
+                    'user_id' => $user_id,
+                    'post_id' => $request->input('post_id'),
+                    'description' => $request->input('description')
+                ]
+            );
+            return back();
+        }
+        else {
+            return back()->with('success', 'pleacse register or login');
+        }
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserPost  $userPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserPost $userPost)
+    public function show($id)
     {
-        //
-    }
+        }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserPost  $userPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserPost $userPost)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +77,10 @@ class UserPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserPost  $userPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserPost $userPost)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +88,10 @@ class UserPostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserPost  $userPost
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserPost $userPost)
+    public function destroy($id)
     {
         //
     }
